@@ -108,7 +108,15 @@ var toDo ={
   },
   loadToDos : function(arr){
     _.each(arr, function(currVal, idx, arr){
+    //maintains the same ID regardless of view allowing for editing within the various filters
+      if(arr === toDo.toDoList){
       currVal.id = idx;
+    }
+    else{
+      currVal.id = _.filter(toDo.toDoList, function(obj){
+        return obj.item === currVal.item;})[0].id;
+    }
+
       if(currVal.status ==="Active"){
       toDo.loadTemplate($('.todo-section'), currVal, $('#toDoTmpl').html());
     }
@@ -161,5 +169,3 @@ var toDo ={
   toDoList : [],
 
 };
-
-//localStorage.setItem('toDo', JSON.stringify(toDo));
