@@ -19,10 +19,20 @@ var toDo ={
     //create new todo
     $('#newForm').on('submit', function(event){
       event.preventDefault();
-      var newToDo ={
-        item: $("input[name='newtodo']").val(),
-        status: "Active",
-      };
+      var newToDo ={};
+      // make sure something is input
+      if($("input[name='newtodo']").val() ===""){
+        newToDo = {
+          item: "Double Click to Actually Add an Item",
+          status: "Active",
+        };
+      }
+      else{
+        newToDo ={
+          item: $("input[name='newtodo']").val(),
+          status: "Active",
+        };
+      }
       toDo.toDoList.push(newToDo);
       var toDoId = toDo.toDoList.indexOf(newToDo);
       newToDo.id = toDoId;
@@ -41,7 +51,16 @@ var toDo ={
       $(this).toggleClass('invisible');
       $(this).siblings('section').toggleClass('invisible');
       $('.todo-section').html("");
+      // return to view it is currently in
+      if($('#Active').hasClass('active_filter')){
+        toDo.filterVisible("Active");
+      }
+      else if ($('#Complete').hasClass('active_filter')){
+        toDo.filterVisible("Completed");
+      }
+      else{
       toDo.loadToDos(toDo.toDoList);
+    }
     });
     // filter for All
     $('#All').on('click', function(event){
@@ -141,7 +160,15 @@ var toDo ={
   deleteToDo : function(idx, $el){
     toDo.toDoList.splice(idx,1);
     $('.todo-section').html('');
+    if($('#Active').hasClass('active_filter')){
+      toDo.filterVisible("Active");
+    }
+    else if ($('#Complete').hasClass('active_filter')){
+      toDo.filterVisible("Completed");
+    }
+    else{
     toDo.loadToDos(toDo.toDoList);
+  }
   },
   clearComplete : function(){
     $('.todo-section').html("");
@@ -149,10 +176,16 @@ var toDo ={
     toDo.toDoList = toDo.toDoList.filter(function(item){
       return item.status === "Active";
     });
-    //returns to all view to prevent rare instance of completed view showing an active
-    $('#All').addClass('active_filter');
-    $('#All').siblings('li').removeClass('active_filter');
+    //returns to selected view
+    if($('#Active').hasClass('active_filter')){
+      toDo.filterVisible("Active");
+    }
+    else if ($('#Complete').hasClass('active_filter')){
+      toDo.filterVisible("Completed");
+    }
+    else{
     toDo.loadToDos(toDo.toDoList);
+  }
   },
   setNumLeft: function(){
     $('#num-left').html("");
