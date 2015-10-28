@@ -1,5 +1,6 @@
 body{
   background-color: #C1BCBC;
+  font-family: helvetica, sans-serif;
   &> footer{
     width: 100%;
     text-align: center;
@@ -12,9 +13,11 @@ h1{
   font-size: 56px;
   text-align: center;
 }
-
+.edit-form{
+  display: inline-block;
+}
 .container{
-  width: 80%;
+  width: 800px;
   margin: 0 auto;
 }
 .active-list{
@@ -101,7 +104,7 @@ input {
   height: 50px;
   width: 100%;
   box-sizing: border-box;
-
+  font-size: 40px;
 }
 
 .active_filter {
@@ -118,4 +121,15 @@ input {
   float: right;
   background-color: red;
   color: white;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-right: 5px;
+}
+.edit{
+  display: inline-block;
+  width: 600px;
+  font-size: 40px;
+}
+.invisible{
+  display: none;
 }

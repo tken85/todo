@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <title>To Do List</title>
     <link rel="stylesheet" href="styles.css" media="screen" title="no title" charset="utf-8">
-    <script type="text/html" id="articleTmpl">
+    <script type="text/html" id="toDoTmpl">
       <article data-id="<%=id%>">
         <span class="status"></span>
-        <section><%=item%></section>
+        <section><%=item%></section><form class="edit-form invisible"><input class="edit" type="text" name="edittodo" value="<%=item%>"></input></form>
         <button class="delete">delete</button>
       </article>
     </script>
-    <script type="text/html" id="articleTmpl2">
+    <script type="text/html" id="completeToDoTmpl">
       <article data-id="<%=id%>">
         <span class="status">&#10003;</span>
-        <section class="strikethrough"><%=item%></section>
+        <section class="strikethrough"><%=item%></section><form class="edit-form invisible"><input class="edit" type="text" name="edittodo" value="<%=item%>"></input></form>
         <button class="delete">delete</button>
       </article>
     </script>
@@ -25,16 +25,15 @@
   </header>
   <div class="container">
   <section class="active-list">
-    <form>
-      <!--<button type="submit" name="button">Add</button> -->
-      <input type="text" name="newtodo" placeholder="new todo"</input>
+    <form id="newForm">
+      <input type="text" name="newtodo" placeholder="Enter New Todo"></input>
     </form>
     <section class="todo-section">
     <!-- to do list items go here -->
   </section>
     <nav>
     <ul class="views">
-      <li id="num-left">&#10003;0 to go</li>
+      <li id="num-left">0 to go</li>
       <li>
         <ul>
           <li id="All">All</li>
@@ -51,7 +50,7 @@
   <section class="back-list2">
   </section>
   </div>
-  <footer>Double-click to edit a todo</footer>
+  <footer>Press 'Enter' to add a todo <br>Double-click to edit a todo<br>Click inside a circle to mark as complete</footer>
     <script src="bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
     <script src="bower_components/underscore/underscore.js" charset="utf-8"></script>
     <script src="data.js" charset="utf-8"></script>
