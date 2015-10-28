@@ -4,9 +4,54 @@
     <meta charset="utf-8">
     <title>To Do List</title>
     <link rel="stylesheet" href="styles.css" media="screen" title="no title" charset="utf-8">
+    <script type="text/html" id="articleTmpl">
+      <article data-id="<%=id%>">
+        <span class="status"></span>
+        <section><%=item%></section>
+        <button class="delete">delete</button>
+      </article>
+    </script>
+    <script type="text/html" id="articleTmpl2">
+      <article data-id="<%=id%>">
+        <span class="status">&#10003;</span>
+        <section class="strikethrough"><%=item%></section>
+        <button class="delete">delete</button>
+      </article>
+    </script>
   </head>
   <body>
-
+  <header>
+    <h1>todos</h1>
+  </header>
+  <div class="container">
+  <section class="active-list">
+    <form>
+      <!--<button type="submit" name="button">Add</button> -->
+      <input type="text" name="newtodo" placeholder="new todo"</input>
+    </form>
+    <section class="todo-section">
+    <!-- to do list items go here -->
+  </section>
+    <nav>
+    <ul class="views">
+      <li id="num-left">&#10003;0 to go</li>
+      <li>
+        <ul>
+          <li id="All">All</li>
+          <li id="Active">Active</li>
+          <li id="Complete">Completed</li>
+        </ul>
+      </li>
+      <li id="clear">Clear Completed</li>
+    </ul>
+  </nav>
+  </section>
+  <section class="back-list1">
+  </section>
+  <section class="back-list2">
+  </section>
+  </div>
+  <footer>Double-click to edit a todo</footer>
     <script src="bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
     <script src="bower_components/underscore/underscore.js" charset="utf-8"></script>
     <script src="data.js" charset="utf-8"></script>
